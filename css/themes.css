@@ -1,0 +1,163 @@
+/* =========================================================
+   Theme tokens — Cyberpunk Neon
+   Dark = default. Light = high-contrast monochrome with neon.
+   ========================================================= */
+
+:root,
+[data-theme="dark"] {
+  /* Surfaces */
+  --bg: #06070d;
+  --bg-elevated: #0b0e16;
+  --bg-card: #11151f;
+  --bg-deep: #03040a;
+  --bg-code: #04060c;
+  --bg-inline-code: rgba(0, 240, 255, 0.06);
+
+  /* Lines */
+  --border: #1a2030;
+  --border-strong: #283042;
+  --border-accent: rgba(0, 240, 255, 0.4);
+  --border-mag: rgba(255, 45, 150, 0.4);
+
+  /* Text */
+  --text: #e3e8f0;
+  --text-muted: #8794a8;
+  --text-subtle: #4d566b;
+  --text-inverse: #06070d;
+
+  /* Brand accents — cyan primary, magenta secondary */
+  --accent: #00f0ff;
+  --accent-dim: #00b8c4;
+  --accent-soft: rgba(0, 240, 255, 0.1);
+  --accent-glow: rgba(0, 240, 255, 0.35);
+
+  --mag: #ff2d96;
+  --mag-dim: #c01f72;
+  --mag-soft: rgba(255, 45, 150, 0.1);
+  --mag-glow: rgba(255, 45, 150, 0.35);
+
+  --link: #00f0ff;
+  --link-hover: #5cffff;
+
+  /* Semantic */
+  --danger: #ff3b5c;
+  --danger-soft: rgba(255, 59, 92, 0.1);
+  --success: #00ff9d;
+  --success-soft: rgba(0, 255, 157, 0.1);
+  --warning: #ffaa00;
+  --warning-soft: rgba(255, 170, 0, 0.1);
+  --info: #00f0ff;
+  --info-soft: rgba(0, 240, 255, 0.1);
+
+  /* Per-API badge colors */
+  --api1: #00f0ff;
+  --api2: #ff2d96;
+  --api3: #ffaa00;
+  --api4: #00ff9d;
+  --api5: #ff3b5c;
+  --api6: #b537ff;
+  --api7: #58a6ff;
+  --api8: #ff6b35;
+  --api9: #5cffff;
+  --api10: #ff8fc4;
+
+  /* Difficulty pills */
+  --diff-easy: #00ff9d;
+  --diff-medium: #ffaa00;
+  --diff-hard: #ff3b5c;
+
+  /* Severity pills (kept for compatibility) */
+  --sev-critical-bg: rgba(255, 59, 92, 0.12);
+  --sev-critical-text: #ff3b5c;
+  --sev-high-bg: rgba(255, 170, 0, 0.12);
+  --sev-high-text: #ffaa00;
+  --sev-medium-bg: rgba(0, 240, 255, 0.12);
+  --sev-medium-text: #00f0ff;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 0 rgba(0, 240, 255, 0.05);
+  --shadow-md: 0 0 20px rgba(0, 240, 255, 0.05);
+  --shadow-lg: 0 0 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow-cyan: 0 0 24px rgba(0, 240, 255, 0.4);
+  --shadow-glow-mag: 0 0 24px rgba(255, 45, 150, 0.4);
+
+  /* Decorative */
+  --grid-color: rgba(0, 240, 255, 0.018);
+  --scan-color: rgba(0, 240, 255, 0.03);
+  --noise-opacity: 0.025;
+}
+
+[data-theme="light"] {
+  /* High-contrast monochrome with retained neon accents */
+  --bg: #f4f4ef;
+  --bg-elevated: #ffffff;
+  --bg-card: #ebebe6;
+  --bg-deep: #e2e2dd;
+  --bg-code: #0b0e16;
+  --bg-inline-code: rgba(216, 27, 96, 0.08);
+
+  --border: #d4d4cd;
+  --border-strong: #a8a89e;
+  --border-accent: rgba(216, 27, 96, 0.45);
+  --border-mag: rgba(0, 122, 130, 0.45);
+
+  --text: #0a0a0a;
+  --text-muted: #4a4a48;
+  --text-subtle: #8a8a85;
+  --text-inverse: #f4f4ef;
+
+  /* In light mode the magenta becomes primary (it stays legible on light bg) */
+  --accent: #d81b60;
+  --accent-dim: #ad1457;
+  --accent-soft: rgba(216, 27, 96, 0.08);
+  --accent-glow: rgba(216, 27, 96, 0.25);
+
+  --mag: #007a82;
+  --mag-dim: #005a62;
+  --mag-soft: rgba(0, 122, 130, 0.08);
+  --mag-glow: rgba(0, 122, 130, 0.25);
+
+  --link: #d81b60;
+  --link-hover: #ad1457;
+
+  --danger: #d32f2f;
+  --danger-soft: rgba(211, 47, 47, 0.08);
+  --success: #1b5e20;
+  --success-soft: rgba(27, 94, 32, 0.08);
+  --warning: #e65100;
+  --warning-soft: rgba(230, 81, 0, 0.08);
+  --info: #007a82;
+  --info-soft: rgba(0, 122, 130, 0.08);
+
+  --api1: #007a82;
+  --api2: #d81b60;
+  --api3: #e65100;
+  --api4: #1b5e20;
+  --api5: #d32f2f;
+  --api6: #6a1b9a;
+  --api7: #1565c0;
+  --api8: #bf360c;
+  --api9: #00838f;
+  --api10: #ad1457;
+
+  --diff-easy: #1b5e20;
+  --diff-medium: #e65100;
+  --diff-hard: #d32f2f;
+
+  --sev-critical-bg: rgba(211, 47, 47, 0.1);
+  --sev-critical-text: #b71c1c;
+  --sev-high-bg: rgba(230, 81, 0, 0.1);
+  --sev-high-text: #bf360c;
+  --sev-medium-bg: rgba(0, 122, 130, 0.1);
+  --sev-medium-text: #005a62;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --shadow-glow-cyan: 0 0 20px rgba(0, 122, 130, 0.2);
+  --shadow-glow-mag: 0 0 20px rgba(216, 27, 96, 0.2);
+
+  --grid-color: rgba(10, 10, 10, 0.035);
+  --scan-color: rgba(10, 10, 10, 0.025);
+  --noise-opacity: 0.02;
+}
