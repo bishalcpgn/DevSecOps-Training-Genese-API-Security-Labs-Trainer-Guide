@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  /* ---------------- Theme toggle ---------------- */
+  /* ── Theme toggle ── */
 
   const THEME_KEY = 'crapi-training-theme';
   const html = document.documentElement;
@@ -20,12 +20,11 @@
   function applyTheme(t) {
     html.setAttribute('data-theme', t);
     const btn = document.getElementById('themeToggle');
-    if (btn) {
-      btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-      btn.innerHTML = t === 'dark'
-        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
-        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-    }
+    if (!btn) return;
+    btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    btn.innerHTML = t === 'dark'
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   }
 
   applyTheme(getInitialTheme());
@@ -33,172 +32,264 @@
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('#themeToggle');
     if (!btn) return;
-    const current = html.getAttribute('data-theme') || 'dark';
-    const next = current === 'dark' ? 'light' : 'dark';
+    const next = (html.getAttribute('data-theme') || 'dark') === 'dark' ? 'light' : 'dark';
     localStorage.setItem(THEME_KEY, next);
     applyTheme(next);
   });
 
-  /* ---------------- Mobile sidebar ---------------- */
+  /* ── Progress tracking ── */
 
-  const sidebar = document.querySelector('.sidebar');
-  const backdrop = document.querySelector('.sidebar-backdrop');
+  const PROGRESS_KEY = 'crapi-progress';
+  const TRACKABLE = new Set(['api1','api2','api3','api4','api5','api6','api7','api8','api9','api10']);
 
-  function openSidebar() {
-    sidebar && sidebar.classList.add('open');
-    backdrop && backdrop.classList.add('show');
-  }
-  function closeSidebar() {
-    sidebar && sidebar.classList.remove('open');
-    backdrop && backdrop.classList.remove('show');
+  function loadCompleted() {
+    try { return new Set(JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]')); }
+    catch { return new Set(); }
   }
 
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('#menuToggle')) openSidebar();
-    if (e.target.closest('.sidebar-backdrop')) closeSidebar();
-    if (e.target.closest('.nav-link') && window.innerWidth <= 768) closeSidebar();
-  });
-
-  /* ---------------- Copy code buttons ---------------- */
-
-  document.addEventListener('click', async (e) => {
-    const btn = e.target.closest('.copy-btn');
-    if (!btn) return;
-    const block = btn.closest('.code-block');
-    if (!block) return;
-    const pre = block.querySelector('pre');
-    if (!pre) return;
-
-    const text = pre.innerText;
-    try {
-      await navigator.clipboard.writeText(text);
-      btn.classList.add('copied');
-      const original = btn.innerHTML;
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
-      showToast('Copied to clipboard');
-      setTimeout(() => {
-        btn.classList.remove('copied');
-        btn.innerHTML = original;
-      }, 1800);
-    } catch (err) {
-      showToast('Copy failed — select manually');
-    }
-  });
-
-  /* ---------------- Toast ---------------- */
-
-  let toastTimer;
-  function showToast(msg) {
-    let t = document.querySelector('.toast');
-    if (!t) {
-      t = document.createElement('div');
-      t.className = 'toast';
-      document.body.appendChild(t);
-    }
-    t.textContent = msg;
-    clearTimeout(toastTimer);
-    requestAnimationFrame(() => t.classList.add('show'));
-    toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+  function saveCompleted(set) {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify([...set]));
   }
 
-  /* ---------------- Tabs (for OS-specific instructions) ---------------- */
+  let completed = loadCompleted();
 
-  document.addEventListener('click', (e) => {
-    const tab = e.target.closest('.tab-btn');
-    if (!tab) return;
-    const tabsRoot = tab.closest('.tabs');
-    if (!tabsRoot) return;
+  function updateProgressUI() {
+    const count = [...completed].filter(id => TRACKABLE.has(id)).length;
+    const total = TRACKABLE.size;
+    const pct   = Math.round((count / total) * 100);
 
-    const target = tab.dataset.tab;
-    tabsRoot.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === tab));
-    tabsRoot.querySelectorAll('.tab-panel').forEach(p => {
-      p.classList.toggle('active', p.dataset.panel === target);
+    const labelEl = document.getElementById('progressLabel');
+    const fillEl  = document.getElementById('progressFill');
+    const pctEl   = document.getElementById('progressPct');
+    if (labelEl) labelEl.textContent = `${count} / ${total}`;
+    if (fillEl)  fillEl.style.width  = pct + '%';
+    if (pctEl)   pctEl.textContent   = pct + '%';
+
+    TRACKABLE.forEach(id => {
+      const badge = document.getElementById('badge-' + id);
+      if (!badge) return;
+      if (completed.has(id)) {
+        badge.textContent = '✓';
+        badge.classList.add('done');
+      } else {
+        badge.textContent = '·';
+        badge.classList.remove('done');
+      }
     });
-  });
+  }
 
-  /* ---------------- Scroll spy (highlight active sidebar link) ---------------- */
+  /* ── Section navigation ── */
 
-  const sections = Array.from(document.querySelectorAll('section.page-section'));
-  const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+  const SECTION_ORDER = [
+    'welcome', 'how-to-use',
+    'setup-crapi', 'setup-burp', 'setup-verify',
+    'api1', 'api2', 'api3', 'api4', 'api5',
+    'api6', 'api7', 'api8', 'api9', 'api10',
+    'appendix-burp', 'appendix-troubleshoot', 'appendix-refs'
+  ];
+
+  const allSections = Array.from(document.querySelectorAll('section.page-section'));
+  const navLinks    = Array.from(document.querySelectorAll('.nav-link'));
+  const crumbEl     = document.querySelector('.crumb-current');
+
   const linkMap = new Map();
   navLinks.forEach(l => {
     const href = l.getAttribute('href');
     if (href && href.startsWith('#')) linkMap.set(href.slice(1), l);
   });
 
-  function setActive(id) {
+  let currentId = null;
+
+  function truncate(str, max) {
+    return str.length > max ? str.slice(0, max) + '…' : str;
+  }
+
+  function getSectionTitle(id) {
+    const el = document.getElementById(id);
+    const h  = el && el.querySelector('h2, h1');
+    return h ? h.textContent.trim() : id;
+  }
+
+  function showSection(id) {
+    if (!SECTION_ORDER.includes(id)) return;
+
+    allSections.forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.classList.add('active');
+    currentId = id;
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
     navLinks.forEach(l => l.classList.remove('active'));
-    const link = linkMap.get(id);
-    if (link) link.classList.add('active');
+    const activeLink = linkMap.get(id);
+    if (activeLink) {
+      activeLink.classList.add('active');
+      activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    if (crumbEl) crumbEl.textContent = truncate(getSectionTitle(id), 40);
+
+    const idx    = SECTION_ORDER.indexOf(id);
+    const prevId = idx > 0                          ? SECTION_ORDER[idx - 1] : null;
+    const nextId = idx < SECTION_ORDER.length - 1  ? SECTION_ORDER[idx + 1] : null;
+
+    const prevBtn       = document.getElementById('pnavPrev');
+    const prevLabelEl   = document.getElementById('pnavPrevLabel');
+    const nextBtn       = document.getElementById('pnavNext');
+    const nextLabelEl   = document.getElementById('pnavNextLabel');
+    const markDoneBtn   = document.getElementById('markDoneBtn');
+
+    if (prevBtn) {
+      prevBtn.dataset.target = prevId || '';
+      prevBtn.classList.toggle('hidden', !prevId);
+      if (prevId && prevLabelEl) prevLabelEl.textContent = truncate(getSectionTitle(prevId), 28);
+    }
+
+    if (nextBtn) {
+      nextBtn.dataset.target = nextId || '';
+      nextBtn.classList.toggle('hidden', !nextId);
+      if (nextId && nextLabelEl) nextLabelEl.textContent = truncate(getSectionTitle(nextId), 28);
+    }
+
+    if (markDoneBtn) {
+      const trackable = TRACKABLE.has(id);
+      markDoneBtn.classList.toggle('hidden', !trackable);
+      if (trackable) refreshMarkDoneBtn(id);
+    }
+
+    history.replaceState(null, '', '#' + id);
   }
 
-  if ('IntersectionObserver' in window && sections.length) {
-    const observer = new IntersectionObserver((entries) => {
-      // Find the entry closest to the top that is visible
-      const visible = entries
-        .filter(e => e.isIntersecting)
-        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-      if (visible[0]) {
-        setActive(visible[0].target.id);
+  function refreshMarkDoneBtn(id) {
+    const btn    = document.getElementById('markDoneBtn');
+    const textEl = document.getElementById('markDoneText');
+    if (!btn) return;
+    const done = completed.has(id);
+    btn.classList.toggle('completed', done);
+    if (textEl) textEl.textContent = done ? 'Completed ✓' : 'Mark section complete';
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#markDoneBtn')) {
+      if (!currentId || !TRACKABLE.has(currentId)) return;
+      completed.has(currentId) ? completed.delete(currentId) : completed.add(currentId);
+      saveCompleted(completed);
+      refreshMarkDoneBtn(currentId);
+      updateProgressUI();
+      return;
+    }
+
+    const navBtn = e.target.closest('#pnavPrev, #pnavNext');
+    if (navBtn && navBtn.dataset.target) {
+      showSection(navBtn.dataset.target);
+      return;
+    }
+
+    const link = e.target.closest('.nav-link');
+    if (link) {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const id = href.slice(1);
+        if (SECTION_ORDER.includes(id)) {
+          e.preventDefault();
+          showSection(id);
+          if (window.innerWidth <= 768) closeSidebar();
+        }
       }
-    }, {
-      rootMargin: '-88px 0px -65% 0px',
-      threshold: 0
-    });
-    sections.forEach(s => observer.observe(s));
+    }
+  });
+
+  const initId = SECTION_ORDER.includes(location.hash.slice(1))
+    ? location.hash.slice(1)
+    : 'welcome';
+  showSection(initId);
+  updateProgressUI();
+
+  /* ── Mobile sidebar ── */
+
+  const sidebar  = document.querySelector('.sidebar');
+  const backdrop = document.querySelector('.sidebar-backdrop');
+
+  function openSidebar()  { sidebar?.classList.add('open');    backdrop?.classList.add('show'); }
+  function closeSidebar() { sidebar?.classList.remove('open'); backdrop?.classList.remove('show'); }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#menuToggle'))        openSidebar();
+    if (e.target.closest('.sidebar-backdrop')) closeSidebar();
+  });
+
+  /* ── Copy code buttons ── */
+
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.copy-btn');
+    if (!btn) return;
+    const pre = btn.closest('.code-block')?.querySelector('pre');
+    if (!pre) return;
+    try {
+      await navigator.clipboard.writeText(pre.innerText);
+      btn.classList.add('copied');
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+      showToast('Copied to clipboard');
+      setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1800);
+    } catch { showToast('Copy failed — select manually'); }
+  });
+
+  /* ── Toast ── */
+
+  let toastTimer;
+  function showToast(msg) {
+    let t = document.querySelector('.toast');
+    if (!t) { t = document.createElement('div'); t.className = 'toast'; document.body.appendChild(t); }
+    t.textContent = msg;
+    clearTimeout(toastTimer);
+    requestAnimationFrame(() => t.classList.add('show'));
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
   }
 
-  /* ---------------- Search filter (sidebar) ---------------- */
+  /* ── Tabs ── */
+
+  document.addEventListener('click', (e) => {
+    const tab = e.target.closest('.tab-btn');
+    if (!tab) return;
+    const root   = tab.closest('.tabs');
+    const target = tab.dataset.tab;
+    root?.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === tab));
+    root?.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === target));
+  });
+
+  /* ── Sidebar search ── */
 
   const searchInput = document.getElementById('navSearch');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       const q = e.target.value.trim().toLowerCase();
-      navLinks.forEach(link => {
-        if (!q) { link.classList.remove('hidden'); return; }
-        const text = link.textContent.toLowerCase();
-        link.classList.toggle('hidden', !text.includes(q));
+      navLinks.forEach(l => {
+        l.classList.toggle('hidden', !!q && !l.textContent.toLowerCase().includes(q));
       });
     });
-    // Esc clears
     searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        searchInput.value = '';
-        searchInput.dispatchEvent(new Event('input'));
-      }
+      if (e.key === 'Escape') { searchInput.value = ''; searchInput.dispatchEvent(new Event('input')); }
     });
   }
 
-  /* ---------------- Keyboard shortcuts ---------------- */
+  /* ── Keyboard shortcuts ── */
 
   document.addEventListener('keydown', (e) => {
-    // "/" focuses search (when not in input)
     const inField = ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
-    if (e.key === '/' && !inField) {
-      e.preventDefault();
-      searchInput && searchInput.focus();
-    }
-    // "t" toggles theme
-    if (e.key === 't' && !inField && !e.ctrlKey && !e.metaKey) {
-      const btn = document.getElementById('themeToggle');
-      btn && btn.click();
+    if (e.key === '/' && !inField) { e.preventDefault(); searchInput?.focus(); }
+    if (e.key === 't' && !inField && !e.ctrlKey && !e.metaKey) document.getElementById('themeToggle')?.click();
+    if (!inField) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        const btn = document.getElementById('pnavNext');
+        if (btn && !btn.classList.contains('hidden')) btn.click();
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        const btn = document.getElementById('pnavPrev');
+        if (btn && !btn.classList.contains('hidden')) btn.click();
+      }
     }
   });
-
-  /* ---------------- Update breadcrumb on scroll ---------------- */
-
-  const crumbCurrent = document.querySelector('.crumb-current');
-  if (crumbCurrent && 'IntersectionObserver' in window) {
-    const breadObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter(e => e.isIntersecting)
-        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-      if (visible[0]) {
-        const h = visible[0].target.querySelector('h2, h1');
-        if (h) crumbCurrent.textContent = h.textContent.trim();
-      }
-    }, { rootMargin: '-88px 0px -75% 0px' });
-    sections.forEach(s => breadObserver.observe(s));
-  }
 
 })();

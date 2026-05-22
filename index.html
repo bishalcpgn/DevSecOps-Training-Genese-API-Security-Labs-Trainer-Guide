@@ -9,10 +9,10 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ffb627'/%3E%3C/svg%3E">
 
-  <!-- Fonts: editorial serif + modern sans + mono -->
+  <!-- Fonts: modern sans + editorial serif + mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/themes.css">
@@ -49,7 +49,7 @@
       >
     </div>
 
-    <nav>
+    <nav aria-label="Sidebar navigation">
       <div class="nav-section">
         <div class="nav-section-label">Getting Started</div>
         <ul class="nav-list">
@@ -70,16 +70,16 @@
       <div class="nav-section">
         <div class="nav-section-label">API Top 10 — 2023</div>
         <ul class="nav-list">
-          <li><a href="#api1" class="nav-link"><span class="nav-num">API1</span> Broken Object Level Auth</a></li>
-          <li><a href="#api2" class="nav-link"><span class="nav-num">API2</span> Broken Authentication</a></li>
-          <li><a href="#api3" class="nav-link"><span class="nav-num">API3</span> Broken Object Property Auth</a></li>
-          <li><a href="#api4" class="nav-link"><span class="nav-num">API4</span> Unrestricted Resource Use</a></li>
-          <li><a href="#api5" class="nav-link"><span class="nav-num">API5</span> Broken Function Level Auth</a></li>
-          <li><a href="#api6" class="nav-link"><span class="nav-num">API6</span> Sensitive Business Flows</a></li>
-          <li><a href="#api7" class="nav-link"><span class="nav-num">API7</span> Server-Side Request Forgery</a></li>
-          <li><a href="#api8" class="nav-link"><span class="nav-num">API8</span> Security Misconfiguration</a></li>
-          <li><a href="#api9" class="nav-link"><span class="nav-num">API9</span> Improper Inventory Mgmt</a></li>
-          <li><a href="#api10" class="nav-link"><span class="nav-num">API10</span> Unsafe API Consumption</a></li>
+          <li><a href="#api1" class="nav-link"><span class="nav-num">API1</span> Broken Object Level Auth<span class="nav-badge" id="badge-api1">·</span></a></li>
+          <li><a href="#api2" class="nav-link"><span class="nav-num">API2</span> Broken Authentication<span class="nav-badge" id="badge-api2">·</span></a></li>
+          <li><a href="#api3" class="nav-link"><span class="nav-num">API3</span> Broken Object Property Auth<span class="nav-badge" id="badge-api3">·</span></a></li>
+          <li><a href="#api4" class="nav-link"><span class="nav-num">API4</span> Unrestricted Resource Use<span class="nav-badge" id="badge-api4">·</span></a></li>
+          <li><a href="#api5" class="nav-link"><span class="nav-num">API5</span> Broken Function Level Auth<span class="nav-badge" id="badge-api5">·</span></a></li>
+          <li><a href="#api6" class="nav-link"><span class="nav-num">API6</span> Sensitive Business Flows<span class="nav-badge" id="badge-api6">·</span></a></li>
+          <li><a href="#api7" class="nav-link"><span class="nav-num">API7</span> Server-Side Request Forgery<span class="nav-badge" id="badge-api7">·</span></a></li>
+          <li><a href="#api8" class="nav-link"><span class="nav-num">API8</span> Security Misconfiguration<span class="nav-badge" id="badge-api8">·</span></a></li>
+          <li><a href="#api9" class="nav-link"><span class="nav-num">API9</span> Improper Inventory Mgmt<span class="nav-badge" id="badge-api9">·</span></a></li>
+          <li><a href="#api10" class="nav-link"><span class="nav-num">API10</span> Unsafe API Consumption<span class="nav-badge" id="badge-api10">·</span></a></li>
         </ul>
       </div>
 
@@ -111,6 +111,12 @@
           <span class="crumb-current">Welcome</span>
         </div>
       </div>
+      <div class="topbar-progress">
+        <span class="prog-label" id="progressLabel">0 / 10</span>
+        <div class="prog-track"><div class="prog-fill" id="progressFill"></div></div>
+        <span class="prog-pct" id="progressPct">0%</span>
+      </div>
+
       <div class="topbar-actions">
         <a class="btn-github" href="https://github.com/OWASP/crAPI" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.36-3.87-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.38 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
@@ -252,104 +258,26 @@
         </ul>
 
         <h3>Installation</h3>
-        <p>Choose your operating system below. Commands install the <strong>main</strong> branch (stable). To get the LLM chatbot challenges (API10), substitute <code>main</code> with <code>develop</code>.</p>
+        <p>The crAPI deployment is managed with Docker Compose. Use the same commands on Linux, macOS, and Windows.</p>
 
-        <div class="tabs">
-          <div class="tab-list" role="tablist">
-            <button class="tab-btn active" data-tab="linux" role="tab">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.504.044c-1.052.013-2.05.27-2.913.732-1.43.764-2.46 2.054-2.998 3.65a8.06 8.06 0 00-.34 4.49c.21.92.534 1.795.882 2.692.07.176.118.343.18.523.067.18.144.342.176.522.082.402-.039.79-.215 1.146-.176.357-.41.7-.547 1.094-.118.357-.078.728.043 1.078.118.36.314.69.547 1.005.43.578.92 1.118 1.43 1.609.49.49 1.038.94 1.566 1.36.527.42 1.078.78 1.667 1.058.59.276 1.215.47 1.86.508.645.04 1.317-.078 1.94-.293.624-.218 1.22-.546 1.785-.92.566-.376 1.117-.806 1.625-1.292.508-.485.978-1.039 1.41-1.62.43-.585.84-1.214 1.18-1.92.34-.704.625-1.474.804-2.293.18-.82.254-1.706.215-2.572-.04-.866-.176-1.714-.367-2.514-.196-.8-.464-1.567-.78-2.293-.318-.726-.704-1.41-1.118-2.038-.41-.624-.86-1.215-1.332-1.704C16.92.78 15.66.06 14.355.005c-.617-.026-1.234.027-1.85.04zm-.587 2.762c.97-.01 1.93.142 2.802.585.872.443 1.66 1.156 2.13 1.97.47.81.61 1.77.43 2.665-.18.895-.66 1.78-1.36 2.45-.4.4-.84.74-1.31.99-.47.25-.97.4-1.49.45-.522.05-1.064-.01-1.57-.18-.51-.176-.99-.45-1.4-.8-.408-.35-.74-.78-.96-1.27-.215-.49-.31-1.03-.27-1.57.04-.54.215-1.07.5-1.55.286-.477.685-.9 1.157-1.21.47-.31 1.01-.503 1.564-.55"/></svg>
-              Linux
-            </button>
-            <button class="tab-btn" data-tab="macos" role="tab">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              macOS
-            </button>
-            <button class="tab-btn" data-tab="windows" role="tab">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
-              Windows
-            </button>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-traffic-lights"><span></span><span></span><span></span></span>
+            <span class="code-block-label">docker compose · cross-platform</span>
+            <button class="copy-btn" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
           </div>
-
-          <div class="tab-panels">
-
-            <div class="tab-panel active" data-panel="linux">
-              <p>Run these in any terminal on Ubuntu / Debian / Fedora / Arch:</p>
-              <div class="code-block">
-                <div class="code-block-header">
-                  <span class="code-traffic-lights"><span></span><span></span><span></span></span>
-                  <span class="code-block-label">bash · Linux</span>
-                  <button class="copy-btn" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-                </div>
 <pre><span class="tok-cmt"># Download the latest stable release</span>
 curl -L -o /tmp/crapi.zip https://github.com/OWASP/crAPI/archive/refs/heads/main.zip
 unzip /tmp/crapi.zip -d /tmp
 cd /tmp/crAPI-main/deploy/docker
 
-<span class="tok-cmt"># Pull all images first (avoids timeouts during up)</span>
-docker compose pull
-
-<span class="tok-cmt"># Start the stack</span>
-docker compose -f docker-compose.yml --compatibility up -d
-
-<span class="tok-cmt"># Tail logs until "Listening" or "Started" messages stop scrolling</span>
-docker compose logs -f
-</pre>
-              </div>
-            </div>
-
-            <div class="tab-panel" data-panel="macos">
-              <p>Identical to Linux. Use Terminal or iTerm2. Ensure Docker Desktop is running.</p>
-              <div class="code-block">
-                <div class="code-block-header">
-                  <span class="code-traffic-lights"><span></span><span></span><span></span></span>
-                  <span class="code-block-label">zsh · macOS</span>
-                  <button class="copy-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-                </div>
-<pre><span class="tok-cmt"># Confirm Docker Desktop is running first</span>
-docker info >/dev/null || { echo "Start Docker Desktop"; exit 1; }
-
-curl -L -o ~/Downloads/crapi.zip https://github.com/OWASP/crAPI/archive/refs/heads/main.zip
-unzip ~/Downloads/crapi.zip -d ~/Downloads
-cd ~/Downloads/crAPI-main/deploy/docker
-
+<span class="tok-cmt"># Pull images and start the stack</span>
 docker compose pull
 docker compose -f docker-compose.yml --compatibility up -d
+
+<span class="tok-cmt"># Verify the stack</span>
 docker compose ps
 </pre>
-              </div>
-              <div class="callout callout-info">
-                <span class="callout-title">Apple Silicon (M1/M2/M3)</span>
-                All images publish ARM64 variants. If a container fails to start with "exec format error",
-                pull explicitly: <code>docker compose pull --platform linux/arm64</code>.
-              </div>
-            </div>
-
-            <div class="tab-panel" data-panel="windows">
-              <p>Run these in <strong>PowerShell</strong> (not cmd.exe). Docker Desktop must use the WSL2 backend with Linux containers selected.</p>
-              <div class="code-block">
-                <div class="code-block-header">
-                  <span class="code-traffic-lights"><span></span><span></span><span></span></span>
-                  <span class="code-block-label">PowerShell · Windows</span>
-                  <button class="copy-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
-                </div>
-<pre><span class="tok-cmt"># Download &amp; extract via built-in tools (no extra software needed)</span>
-curl.exe -L -o $env:TEMP\crapi.zip https://github.com/OWASP/crAPI/archive/refs/heads/main.zip
-tar -xf $env:TEMP\crapi.zip -C $env:TEMP
-cd $env:TEMP\crAPI-main\deploy\docker
-
-docker compose pull
-docker compose -f docker-compose.yml --compatibility up -d
-docker compose ps
-</pre>
-              </div>
-              <div class="callout callout-warning">
-                <span class="callout-title">WSL2 required</span>
-                If <code>docker compose ps</code> hangs or returns "context cancelled", open Docker Desktop →
-                Settings → General → enable <em>"Use the WSL 2 based engine"</em> and restart.
-              </div>
-            </div>
-
-          </div>
         </div>
 
         <h3>Endpoints &amp; default ports</h3>
@@ -1528,7 +1456,25 @@ Bill it to their account.</pre>
         </ul>
       </section>
 
-    </div>
+    </div><!-- /.content-inner -->
+
+    <!-- Fixed bottom page navigation -->
+    <nav class="page-nav" id="pageNav" aria-label="Section navigation">
+      <button class="page-nav-btn hidden" id="pnavPrev" aria-label="Previous section">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <span class="pnav-label" id="pnavPrevLabel">Previous</span>
+      </button>
+      <div class="page-nav-center">
+        <button class="mark-done-btn hidden" id="markDoneBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span id="markDoneText">Mark section complete</span>
+        </button>
+      </div>
+      <button class="page-nav-btn hidden" id="pnavNext" aria-label="Next section">
+        <span class="pnav-label" id="pnavNextLabel">Next</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </nav>
 
     <footer class="footer">
       <div class="footer-brand">crAPI · Training</div>
