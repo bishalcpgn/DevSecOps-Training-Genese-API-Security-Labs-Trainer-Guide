@@ -1,0 +1,115 @@
+/* =========================================================
+   Theme tokens — editorial-technical palette
+   Dark theme is default. Toggled via data-theme attribute.
+   ========================================================= */
+
+:root,
+[data-theme="dark"] {
+  /* Surfaces */
+  --bg: #0d1117;
+  --bg-elevated: #161b22;
+  --bg-card: #1c2128;
+  --bg-code: #0a0e14;
+  --bg-inline-code: rgba(255, 182, 39, 0.08);
+
+  /* Lines */
+  --border: #30363d;
+  --border-strong: #484f58;
+  --border-accent: rgba(255, 182, 39, 0.3);
+
+  /* Text */
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --text-subtle: #6e7681;
+  --text-inverse: #0d1117;
+
+  /* Brand accents */
+  --accent: #ffb627;         /* warm amber — primary accent */
+  --accent-soft: rgba(255, 182, 39, 0.12);
+  --accent-hover: #ffc04a;
+  --link: #79c0ff;
+  --link-hover: #a5d6ff;
+
+  /* Semantic */
+  --danger: #f85149;
+  --danger-soft: rgba(248, 81, 73, 0.1);
+  --success: #3fb950;
+  --success-soft: rgba(63, 185, 80, 0.1);
+  --warning: #d29922;
+  --warning-soft: rgba(210, 153, 34, 0.1);
+  --info: #58a6ff;
+  --info-soft: rgba(88, 166, 255, 0.1);
+
+  /* Severity pills */
+  --sev-critical-bg: rgba(248, 81, 73, 0.15);
+  --sev-critical-text: #ff7b72;
+  --sev-high-bg: rgba(210, 153, 34, 0.15);
+  --sev-high-text: #e3b341;
+  --sev-medium-bg: rgba(88, 166, 255, 0.15);
+  --sev-medium-text: #79c0ff;
+
+  /* Shadows & effects */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px rgba(255, 182, 39, 0.15);
+
+  /* Decorative */
+  --grid-color: rgba(255, 255, 255, 0.025);
+  --noise-opacity: 0.015;
+}
+
+[data-theme="light"] {
+  /* Surfaces — warm cream, not pure white */
+  --bg: #faf8f3;
+  --bg-elevated: #ffffff;
+  --bg-card: #f5f2ea;
+  --bg-code: #1c2128;
+  --bg-inline-code: rgba(194, 65, 12, 0.08);
+
+  /* Lines */
+  --border: #d8d4c7;
+  --border-strong: #b8b3a3;
+  --border-accent: rgba(194, 65, 12, 0.3);
+
+  /* Text */
+  --text: #1c1d1f;
+  --text-muted: #5c5d5f;
+  --text-subtle: #84858a;
+  --text-inverse: #faf8f3;
+
+  /* Brand accents */
+  --accent: #c2410c;         /* burnt orange — light mode of amber */
+  --accent-soft: rgba(194, 65, 12, 0.1);
+  --accent-hover: #9a3412;
+  --link: #1d4ed8;
+  --link-hover: #1e40af;
+
+  /* Semantic */
+  --danger: #b91c1c;
+  --danger-soft: rgba(185, 28, 28, 0.08);
+  --success: #15803d;
+  --success-soft: rgba(21, 128, 61, 0.08);
+  --warning: #a16207;
+  --warning-soft: rgba(161, 98, 7, 0.08);
+  --info: #1d4ed8;
+  --info-soft: rgba(29, 78, 216, 0.08);
+
+  /* Severity pills */
+  --sev-critical-bg: rgba(185, 28, 28, 0.1);
+  --sev-critical-text: #991b1b;
+  --sev-high-bg: rgba(161, 98, 7, 0.12);
+  --sev-high-text: #854d0e;
+  --sev-medium-bg: rgba(29, 78, 216, 0.1);
+  --sev-medium-text: #1e40af;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(28, 29, 31, 0.06);
+  --shadow-md: 0 4px 12px rgba(28, 29, 31, 0.08);
+  --shadow-lg: 0 12px 32px rgba(28, 29, 31, 0.1);
+  --shadow-glow: 0 0 24px rgba(194, 65, 12, 0.15);
+
+  /* Decorative */
+  --grid-color: rgba(28, 29, 31, 0.04);
+  --noise-opacity: 0.02;
+}
