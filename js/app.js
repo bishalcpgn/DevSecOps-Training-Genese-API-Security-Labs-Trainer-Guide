@@ -1,5 +1,5 @@
 /* =========================================================
-   crAPI Training — Trainer Platform
+   crAPI Training - Trainer Platform
    Interactive behaviors
    ========================================================= */
 
@@ -69,10 +69,12 @@
       const badge = document.getElementById('badge-' + id);
       if (!badge) return;
       if (completed.has(id)) {
-        badge.textContent = '✓';
+        badge.textContent = '✓ Done';
+        badge.setAttribute('aria-label', 'Completed');
         badge.classList.add('done');
       } else {
-        badge.textContent = '·';
+        badge.textContent = '';
+        badge.setAttribute('aria-label', 'Not completed');
         badge.classList.remove('done');
       }
     });
@@ -105,6 +107,13 @@
   }
 
   function getSectionTitle(id) {
+    const link = linkMap.get(id);
+    if (link) {
+      const clone = link.cloneNode(true);
+      clone.querySelectorAll('.nav-badge').forEach(el => el.remove());
+      return clone.textContent.trim().replace(/\s+/g, ' ');
+    }
+
     const el = document.getElementById(id);
     const h  = el && el.querySelector('h2, h1');
     return h ? h.textContent.trim() : id;
@@ -206,6 +215,25 @@
   showSection(initId);
   updateProgressUI();
 
+  /* ── Welcome ops ticker ── */
+
+  const opsTicker = document.getElementById('opsTicker');
+  const opsLines = [
+    'select a module to load the attack path...',
+    'map endpoint → confirm auth context → test object ownership',
+    'send to Repeater, change one variable, observe the delta',
+    'turn every exploit into a fix the engineering team can ship',
+    'trainer note: keep Burp history clean before the live demo'
+  ];
+
+  if (opsTicker && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let opsIndex = 0;
+    setInterval(() => {
+      opsIndex = (opsIndex + 1) % opsLines.length;
+      opsTicker.textContent = opsLines[opsIndex];
+    }, 2600);
+  }
+
   /* ── Mobile sidebar ── */
 
   const sidebar  = document.querySelector('.sidebar');
@@ -233,7 +261,7 @@
       btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
       showToast('Copied to clipboard');
       setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1800);
-    } catch { showToast('Copy failed — select manually'); }
+    } catch { showToast('Copy failed - select manually'); }
   });
 
   /* ── Toast ── */

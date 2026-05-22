@@ -1,12 +1,12 @@
 /* =========================================================
-   Theme tokens — deep navy / Catppuccin-inspired palette
+   Theme tokens - deep navy / Catppuccin-inspired palette
    Follows the Juice Shop Trainee design language.
    Dark theme is default. Toggled via data-theme attribute.
    ========================================================= */
 
 :root,
 [data-theme="dark"] {
-  /* Surfaces — deep navy */
+  /* Surfaces - deep navy */
   --bg: #0a0e14;
   --bg-elevated: #0d1219;
   --bg-card: #131920;
@@ -15,18 +15,18 @@
   --bg-code-border: #313244;   /* Catppuccin Mocha surface0 */
   --bg-inline-code: rgba(137, 180, 250, 0.1);
 
-  /* Lines — blue-tinted */
+  /* Lines - blue-tinted */
   --border: #1e2d3d;
   --border-strong: #2a3f55;
   --border-accent: rgba(240, 56, 59, 0.35);
 
-  /* Text — Catppuccin lavender */
+  /* Text - Catppuccin lavender */
   --text: #cdd6f4;
   --text-muted: #6e8aa8;
   --text-subtle: #445566;
   --text-inverse: #0a0e14;
 
-  /* Brand accent — security red */
+  /* Brand accent - security red */
   --accent: #f0383b;
   --accent-soft: rgba(240, 56, 59, 0.1);
   --accent-hover: #ff5559;
@@ -63,11 +63,11 @@
 }
 
 [data-theme="light"] {
-  /* Surfaces — cool blue-grey */
+  /* Surfaces - cool blue-grey */
   --bg: #f0f4f8;
   --bg-elevated: #ffffff;
   --bg-card: #e8edf3;
-  --bg-code: #f7f3ed;          /* warm parchment — Carbon Shell light */
+  --bg-code: #f7f3ed;          /* warm parchment - Carbon Shell light */
   --bg-code-header: #ede8e0;   /* slightly darker warm header */
   --bg-code-border: #d4cbbf;   /* warm border */
   --bg-inline-code: rgba(37, 99, 235, 0.07);
@@ -83,7 +83,7 @@
   --text-subtle: #8090a8;
   --text-inverse: #f0f4f8;
 
-  /* Brand accent — darker red for contrast */
+  /* Brand accent - darker red for contrast */
   --accent: #d42b2e;
   --accent-soft: rgba(212, 43, 46, 0.1);
   --accent-hover: #b82226;
