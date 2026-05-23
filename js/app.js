@@ -40,7 +40,12 @@
   /* ── Progress tracking ── */
 
   const PROGRESS_KEY = 'crapi-progress';
-  const TRACKABLE = new Set(['api1','api2','api3','api4','api5','api6','api7','api8','api9','api10']);
+  const TRACKABLE = new Set([
+    'welcome', 'how-to-use',
+    'setup-crapi', 'setup-burp', 'setup-verify',
+    'api1', 'api2', 'api3', 'api4', 'api5',
+    'api6', 'api7', 'api8', 'api9', 'api10'
+  ]);
 
   function loadCompleted() {
     try { return new Set(JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]')); }
@@ -186,6 +191,8 @@
       try { stopTimer(currentId); resetTimer(currentId); } catch(e){}
       completed.has(currentId) ? completed.delete(currentId) : completed.add(currentId);
       saveCompleted(completed);
+      const markBtn = document.getElementById('markDoneBtn');
+      if (markBtn) markBtn.classList.remove('hidden');
       refreshMarkDoneBtn(currentId);
       updateProgressUI();
       showToast(`${currentId.toUpperCase()} marked complete!`);

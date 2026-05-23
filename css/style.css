@@ -513,7 +513,7 @@ section.page-section:first-child {
 
 .topbar-progress .prog-fill {
   height: 100%;
-  background: var(--accent);
+  background: #ec4899;
   border-radius: 3px;
   transition: width 0.4s ease;
   width: 0%;
@@ -522,7 +522,7 @@ section.page-section:first-child {
 .topbar-progress .prog-pct {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--accent);
+  color: #ec4899;
   font-family: var(--font-mono);
   min-width: 30px;
 }
