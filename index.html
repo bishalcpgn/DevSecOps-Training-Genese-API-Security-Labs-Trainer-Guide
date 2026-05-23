@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OWASP API Security Top 10 (2023) hands-on training using crAPI and Burp Suite Community Edition. Trainer reference platform with detailed lab solutions.">
-  <title>crAPI Training · OWASP API Top 10 (2023) · Trainer Platform</title>
+  <meta name="description" content="OWASP API Security Top 10 (2026) hands-on training using crAPI and Burp Suite Community Edition. Trainer reference platform with detailed lab solutions.">
+  <title>API Security Training · OWASP API Top 10 (2026) · Trainer Platform</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ffb627'/%3E%3C/svg%3E">
@@ -33,10 +33,10 @@
     <div class="brand">
       <div class="brand-title">
         <span class="accent-dot"></span>
-        <span>crAPI<span class="italic-serif" style="color: var(--accent);">·</span>Training</span>
+        <span>APISec<span class="italic-serif" style="color: var(--accent);">·</span>Training</span>
       </div>
       <div class="brand-subtitle">OWASP API Security Labs</div>
-      <span class="brand-edition">Trainer · 2023 Edition</span>
+      <span class="brand-edition">Trainer · 2026 Edition</span>
     </div>
 
     <div class="sidebar-search">
@@ -68,7 +68,7 @@
       </div>
 
       <div class="nav-section">
-        <div class="nav-section-label">API Top 10 - 2023</div>
+        <div class="nav-section-label">API Top 10 - 2026</div>
         <ul class="nav-list">
           <li><a href="#api1" class="nav-link"><span class="nav-num">API1</span> Broken Object Level Auth<span class="nav-badge" id="badge-api1">·</span></a></li>
           <li><a href="#api2" class="nav-link"><span class="nav-num">API2</span> Broken Authentication<span class="nav-badge" id="badge-api2">·</span></a></li>
@@ -133,11 +133,11 @@
            ===================================================== -->
       <section id="welcome" class="page-section">
         <div class="hero">
-          <div class="hero-eyebrow">OWASP API Security Top 10 · 2023</div>
+          <div class="hero-eyebrow">OWASP API Security Top 10 · 2026</div>
           <h1>Hands-on labs for the modern <span class="em">API attacker</span>.</h1>
           <p class="lead">
             A trainer-side reference platform. Every challenge in OWASP's <strong>crAPI</strong>
-            (Completely Ridiculous API) mapped to the 2023 Top 10, with full reproduction steps
+            (Completely Ridiculous API) mapped to the 2026 Top 10, with full reproduction steps
             using <strong>Burp Suite Community Edition</strong> - from reconnaissance to working exploit
             to remediation guidance.
           </p>
@@ -252,14 +252,14 @@
               <tr><th style="width:90px">Slot</th><th>Module</th><th style="width:120px">Time</th></tr>
             </thead>
             <tbody>
-              <tr><td class="mono">09:00</td><td>Welcome · Setup walkthrough · Verification</td><td>60 min</td></tr>
-              <tr><td class="mono">10:00</td><td>API1 BOLA · API2 Broken Auth · API3 BOPLA</td><td>90 min</td></tr>
-              <tr><td class="mono">11:30</td><td>Break</td><td>15 min</td></tr>
-              <tr><td class="mono">11:45</td><td>API4 Unrestricted Use · API5 BFLA</td><td>75 min</td></tr>
+              <tr><td class="mono">09:00</td><td>Welcome · Setup walkthrough · Verification</td><td>10 min</td></tr>
+              <tr><td class="mono">10:00</td><td>API1 BOLA · API2 Broken Auth · API3 BOPLA</td><td>30 min</td></tr>
+              <tr><td class="mono">11:30</td><td>Break</td><td>5 min</td></tr>
+              <tr><td class="mono">11:45</td><td>API4 Unrestricted Use · API5 BFLA</td><td>30 min</td></tr>
               <tr><td class="mono">13:00</td><td>Lunch</td><td>60 min</td></tr>
-              <tr><td class="mono">14:00</td><td>API6 Business Flows · API7 SSRF</td><td>75 min</td></tr>
-              <tr><td class="mono">15:15</td><td>API8 Misconfig · API9 Inventory · API10 Unsafe Consumption</td><td>90 min</td></tr>
-              <tr><td class="mono">16:45</td><td>Wrap-up · Q&amp;A · Remediation discussion</td><td>30 min</td></tr>
+              <tr><td class="mono">14:00</td><td>API6 Business Flows · API7 SSRF</td><td>10 min</td></tr>
+              <tr><td class="mono">15:15</td><td>API8 Misconfig · API9 Inventory · API10 Unsafe Consumption</td><td>20 min</td></tr>
+              <tr><td class="mono">16:45</td><td>Wrap-up · Q&amp;A · Remediation discussion</td><td>5 min</td></tr>
             </tbody>
           </table>
         </div>
@@ -510,7 +510,7 @@ scoop install ffuf</pre>
         </div>
       </section>
 
-      <div class="ornament"><span>· OWASP API Top 10 - 2023 ·</span></div>
+      <div class="ornament"><span>· OWASP API Top 10 - 2026 ·</span></div>
 
       <!-- =====================================================
            API1 - BROKEN OBJECT LEVEL AUTHORIZATION
@@ -519,7 +519,7 @@ scoop install ffuf</pre>
         <div class="challenge-header">
           <div class="challenge-number">01</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API1:2023 · Broken Object Level Authorization</div>
+            <div class="challenge-category">API1:2026 · Broken Object Level Authorization</div>
             <h2 class="italic-serif">Tracking <em>someone else's</em> car.</h2>
             <div class="challenge-meta">
               <span class="pill pill-critical"><span class="dot"></span>Critical</span>
@@ -527,6 +527,14 @@ scoop install ffuf</pre>
               <span class="pill pill-tool">Burp Repeater</span>
             </div>
           </div>
+        </div>
+
+        <div class="lab-timer-container" data-lab="api1">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api1" aria-label="Start Lab Timer">Start Lab</button>
         </div>
 
         <h3>Vulnerability summary</h3>
@@ -601,7 +609,7 @@ Authorization: Bearer <span class="tok-str">&lt;jwt&gt;</span></pre>
         <div class="challenge-header">
           <div class="challenge-number">02</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API2:2023 · Broken Authentication</div>
+            <div class="challenge-category">API2:2026 · Broken Authentication</div>
             <h2 class="italic-serif">A four-digit door with <em>no lock</em>.</h2>
             <div class="challenge-meta">
               <span class="pill pill-critical"><span class="dot"></span>Critical</span>
@@ -612,13 +620,21 @@ Authorization: Bearer <span class="tok-str">&lt;jwt&gt;</span></pre>
           </div>
         </div>
 
-        <h3>Vulnerability summary</h3>
-        <p>
-          The password-reset flow sends a <strong>4-digit OTP</strong>. Two endpoints accept it:
-          <code>/v3/check-otp</code> (rate-limited to ~10 attempts) and <code>/v2/check-otp</code>
-          (legacy, <strong>no rate limit</strong>). The legacy version was never decommissioned - an attacker
-          brute-forces all 10,000 combinations through v2 to take over any account.
-        </p>
+        <div class="lab-timer-container" data-lab="api2">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api2" aria-label="Start Lab Timer">Start Lab</button>
+        </div>
+
+         <h3>Vulnerability summary</h3>
+         <p>
+           The password-reset flow sends a <strong>4-digit OTP</strong>. Two endpoints accept it:
+           <code>/v3/check-otp</code> (rate-limited to ~10 attempts) and <code>/v2/check-otp</code>
+           (legacy, <strong>no rate limit</strong>). The legacy version was never decommissioned - an attacker
+           brute-forces all 10,000 combinations through v2 to take over any account.
+         </p>
 
         <div class="callout callout-info">
           <span class="callout-title">Chains with API9</span>
@@ -734,7 +750,7 @@ Content-Type: application/json
         <div class="challenge-header">
           <div class="challenge-number">03</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API3:2023 · Broken Object Property Level Authorization</div>
+            <div class="challenge-category">API3:2026 · Broken Object Property Level Authorization</div>
             <h2 class="italic-serif">Shopping with a <em>minus sign</em>.</h2>
             <div class="challenge-meta">
               <span class="pill pill-high"><span class="dot"></span>High</span>
@@ -744,9 +760,17 @@ Content-Type: application/json
           </div>
         </div>
 
+        <div class="lab-timer-container" data-lab="api3">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api3" aria-label="Start Lab Timer">Start Lab</button>
+        </div>
+
         <h3>Vulnerability summary</h3>
         <p>
-          API3:2023 merges 2019's <em>Excessive Data Exposure</em> and <em>Mass Assignment</em> into one
+          API3:2026 merges 2019's <em>Excessive Data Exposure</em> and <em>Mass Assignment</em> into one
           category - the unifying idea is <strong>per-property authorization</strong>. In crAPI's shop,
           the order POST accepts a client-supplied <code>quantity</code> field with no sanity check; a
           negative quantity creates an order that <em>refunds</em> the user.
@@ -831,7 +855,7 @@ Content-Type: application/json
         <div class="challenge-header">
           <div class="challenge-number">04</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API4:2023 · Unrestricted Resource Consumption</div>
+            <div class="challenge-category">API4:2026 · Unrestricted Resource Consumption</div>
             <h2 class="italic-serif">A <em>thousand</em> mechanic calls in one POST.</h2>
             <div class="challenge-meta">
               <span class="pill pill-high"><span class="dot"></span>High</span>
@@ -839,6 +863,14 @@ Content-Type: application/json
               <span class="pill pill-tool">Burp Repeater</span>
             </div>
           </div>
+        </div>
+
+        <div class="lab-timer-container" data-lab="api4">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api4" aria-label="Start Lab Timer">Start Lab</button>
         </div>
 
         <h3>Vulnerability summary</h3>
@@ -918,7 +950,7 @@ Content-Type: application/json
         <div class="challenge-header">
           <div class="challenge-number">05</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API5:2023 · Broken Function Level Authorization</div>
+            <div class="challenge-category">API5:2026 · Broken Function Level Authorization</div>
             <h2 class="italic-serif">Two letters: <em>user → admin</em>.</h2>
             <div class="challenge-meta">
               <span class="pill pill-critical"><span class="dot"></span>Critical</span>
@@ -926,6 +958,14 @@ Content-Type: application/json
               <span class="pill pill-tool">Burp Repeater</span>
             </div>
           </div>
+        
+        </div>
+        <div class="lab-timer-container" data-lab="api5">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api5" aria-label="Start Lab Timer">Start Lab</button>
         </div>
 
         <h3>Vulnerability summary</h3>
@@ -1006,7 +1046,7 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
         <div class="challenge-header">
           <div class="challenge-number">06</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API6:2023 · Unrestricted Access to Sensitive Business Flows</div>
+            <div class="challenge-category">API6:2026 · Unrestricted Access to Sensitive Business Flows</div>
             <h2 class="italic-serif">Refund-bombing the <em>same form</em>.</h2>
             <div class="challenge-meta">
               <span class="pill pill-high"><span class="dot"></span>High</span>
@@ -1014,11 +1054,19 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
               <span class="pill pill-tool">Burp Intruder</span>
             </div>
           </div>
+        
+        </div>
+        <div class="lab-timer-container" data-lab="api6">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api6" aria-label="Start Lab Timer">Start Lab</button>
         </div>
 
         <h3>Vulnerability summary</h3>
         <p>
-          API6 is the <em>new</em> 2023 category - it is not about an implementation bug but about a
+          API6 is the <em>new</em> 2026 category - it is not about an implementation bug but about a
           <strong>business flow</strong> being exposed without anti-automation. The refund flow we
           abused once in API3 has no captcha, no per-account refund cap, no anomaly detection, and no
           human-pace heuristics. We script it and bleed the merchant.
@@ -1055,7 +1103,7 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
           <li>The defenders' lever is not "block this request" - it's "this user pattern is non-human".</li>
         </ul>
 
-        <h3>Remediation (per OWASP API6:2023 guidance)</h3>
+        <h3>Remediation (per OWASP API6:2026 guidance)</h3>
         <ol>
           <li><strong>Device fingerprinting</strong> - deny unexpected clients (headless browsers, default-config Selenium).</li>
           <li><strong>Human detection</strong> - CAPTCHA on sensitive flows; biometric where appropriate.</li>
@@ -1074,7 +1122,7 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
         <div class="challenge-header">
           <div class="challenge-number">07</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API7:2023 · Server Side Request Forgery</div>
+            <div class="challenge-category">API7:2026 · Server Side Request Forgery</div>
             <h2 class="italic-serif">Making crAPI fetch <em>whatever you ask</em>.</h2>
             <div class="challenge-meta">
               <span class="pill pill-critical"><span class="dot"></span>Critical</span>
@@ -1082,6 +1130,14 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
               <span class="pill pill-tool">Burp Repeater</span>
             </div>
           </div>
+        
+        </div>
+        <div class="lab-timer-container" data-lab="api7">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api7" aria-label="Start Lab Timer">Start Lab</button>
         </div>
 
         <h3>Vulnerability summary</h3>
@@ -1153,7 +1209,7 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
         <div class="challenge-header">
           <div class="challenge-number">08</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API8:2023 · Security Misconfiguration</div>
+            <div class="challenge-category">API8:2026 · Security Misconfiguration</div>
             <h2 class="italic-serif">Endpoints with <em>no door</em> at all.</h2>
             <div class="challenge-meta">
               <span class="pill pill-high"><span class="dot"></span>High</span>
@@ -1161,6 +1217,14 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
               <span class="pill pill-tool">Burp Repeater</span>
             </div>
           </div>
+        
+        </div>
+        <div class="lab-timer-container" data-lab="api8">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api8" aria-label="Start Lab Timer">Start Lab</button>
         </div>
 
         <h3>Vulnerability summary</h3>
@@ -1224,7 +1288,7 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
         <div class="challenge-header">
           <div class="challenge-number">09</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API9:2023 · Improper Inventory Management</div>
+            <div class="challenge-category">API9:2026 · Improper Inventory Management</div>
             <h2 class="italic-serif">The version <em>they forgot to remove</em>.</h2>
             <div class="challenge-meta">
               <span class="pill pill-high"><span class="dot"></span>High</span>
@@ -1232,6 +1296,14 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
               <span class="pill pill-tool">Burp HTTP history</span>
             </div>
           </div>
+        
+        </div>
+        <div class="lab-timer-container" data-lab="api9">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api9" aria-label="Start Lab Timer">Start Lab</button>
         </div>
 
         <h3>Vulnerability summary</h3>
@@ -1295,7 +1367,7 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
         <div class="challenge-header">
           <div class="challenge-number">10</div>
           <div class="challenge-header-text">
-            <div class="challenge-category">API10:2023 · Unsafe Consumption of APIs</div>
+            <div class="challenge-category">API10:2026 · Unsafe Consumption of APIs</div>
             <h2 class="italic-serif">The chatbot trusts <em>too much</em>.</h2>
             <div class="challenge-meta">
               <span class="pill pill-high"><span class="dot"></span>High</span>
@@ -1304,6 +1376,14 @@ Authorization: Bearer &lt;your-jwt&gt;</pre>
               <span class="pill pill-tool">Burp Repeater</span>
             </div>
           </div>
+        
+        </div>
+        <div class="lab-timer-container" data-lab="api10">
+          <div class="timer-display">
+            <span class="timer-icon">⏱</span>
+            <span class="timer-text">10:00</span>
+          </div>
+          <button class="lab-btn lab-start-btn" data-lab="api10" aria-label="Start Lab Timer">Start Lab</button>
         </div>
 
         <h3>Vulnerability summary</h3>
@@ -1379,7 +1459,7 @@ Bill it to their account.</pre>
         <p>
           The LLM provider <em>is</em> an upstream API to crAPI's chatbot service. crAPI consumes its
           output (a JSON response) and acts on it - render HTML, dispatch tool calls - <strong>without
-          validating that response against the security model</strong>. That's the textbook API10:2023
+          validating that response against the security model</strong>. That's the textbook API10:2026
           definition. Prompt injection is the <em>vehicle</em>; unsafe consumption is the <em>root cause</em>.
         </p>
 
@@ -1471,7 +1551,7 @@ Bill it to their account.</pre>
 
         <h3>Primary sources</h3>
         <ul>
-          <li><a href="https://owasp.org/API-Security/editions/2023/en/0x11-t10/" target="_blank" rel="noopener">OWASP API Security Top 10 - 2023 (canonical list)</a></li>
+          <li><a href="https://owasp.org/API-Security/editions/2026/en/0x11-t10/" target="_blank" rel="noopener">OWASP API Security Top 10 - 2026 (canonical list)</a></li>
           <li><a href="https://github.com/OWASP/crAPI" target="_blank" rel="noopener">OWASP crAPI · GitHub repository</a></li>
           <li><a href="https://github.com/OWASP/crAPI/blob/develop/docs/challengeSolutions.md" target="_blank" rel="noopener">crAPI · official challenge solutions</a></li>
           <li><a href="https://github.com/OWASP/crAPI/blob/develop/docs/challenges.md" target="_blank" rel="noopener">crAPI · challenge list with hints (trainee-suitable)</a></li>
@@ -1514,11 +1594,10 @@ Bill it to their account.</pre>
     </nav>
 
     <footer class="footer">
-      <div class="footer-brand">crAPI · Training</div>
-      <div>Trainer reference platform · OWASP API Security Top 10 (2023)</div>
+      <div class="footer-brand">DevSecOps Training Genese</div>
+      <div> · OWASP API Security Top 10 (2026)</div>
       <div class="footer-meta">
-        Built for internal workshop use · Companion trainee platform published separately
-      </div>
+        Trainer Guide
     </footer>
 
   </main>

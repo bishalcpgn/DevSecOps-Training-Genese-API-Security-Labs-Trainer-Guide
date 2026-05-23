@@ -1520,3 +1520,134 @@ tbody tr:hover { background: var(--bg-card); }
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* ========== Lab Timer Styles ========== */
+
+.lab-timer-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem 0;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), color-mix(in srgb, var(--accent) 4%, var(--surface)));
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 120px;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.timer-icon {
+  font-size: 1.5rem;
+  animation: pulse-timer 1s ease-in-out infinite;
+}
+
+@keyframes pulse-timer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.timer-text {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+.timer-display.warning {
+  color: #f59e0b;
+  border-color: color-mix(in srgb, #f59e0b 30%, transparent);
+}
+
+.timer-display.critical {
+  color: #ef4444;
+  border-color: color-mix(in srgb, #ef4444 30%, transparent);
+}
+
+.lab-btn {
+  flex: 0 0 auto;
+  padding: 0.65rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.lab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  color: white !important;
+}
+
+.lab-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.lab-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.lab-start-btn {
+  background: #10b981;
+}
+
+.lab-start-btn:hover {
+  background: #059669;
+}
+
+.lab-start-btn.active {
+  background: #ef4444;
+}
+
+.lab-start-btn.active:hover {
+  background: #dc2626;
+}
+
+.lab-mark-complete-btn {
+  background: #10b981;
+  box-shadow: 0 4px 12px color-mix(in srgb, #10b981 30%, transparent);
+}
+
+.lab-mark-complete-btn:hover {
+  background: #059669;
+  box-shadow: 0 6px 20px color-mix(in srgb, #059669 40%, transparent);
+}
+
+@media (max-width: 768px) {
+  .lab-timer-container {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .timer-display {
+    flex-basis: 100%;
+  }
+
+  .lab-btn {
+    flex: 1 1 calc(50% - 0.375rem);
+    min-width: 140px;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}

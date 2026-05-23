@@ -182,10 +182,13 @@
   document.addEventListener('click', (e) => {
     if (e.target.closest('#markDoneBtn')) {
       if (!currentId || !TRACKABLE.has(currentId)) return;
+      // Stop and reset any running timer for this section
+      try { stopTimer(currentId); resetTimer(currentId); } catch(e){}
       completed.has(currentId) ? completed.delete(currentId) : completed.add(currentId);
       saveCompleted(completed);
       refreshMarkDoneBtn(currentId);
       updateProgressUI();
+      showToast(`${currentId.toUpperCase()} marked complete!`);
       return;
     }
 
@@ -318,6 +321,166 @@
         if (btn && !btn.classList.contains('hidden')) btn.click();
       }
     }
+  });
+
+  /* ── Lab Timer ── */
+
+  const LAB_TIMERS_KEY = 'crapi-lab-timers';
+  const TIMER_DURATION = 600; // 10 minutes in seconds
+
+  function loadLabTimers() {
+    try {
+      return JSON.parse(localStorage.getItem(LAB_TIMERS_KEY) || '{}');
+    } catch {
+      return {};
+    }
+  }
+
+  function saveLabTimers(timers) {
+    localStorage.setItem(LAB_TIMERS_KEY, JSON.stringify(timers));
+  }
+
+  let labTimers = loadLabTimers();
+  let currentTimer = null;
+  let currentTimerIntervalId = null;
+
+  // On page load, clear all stale active states (no interval is actually running)
+  Object.keys(labTimers).forEach(labId => {
+    labTimers[labId].active = false;
+  });
+  saveLabTimers(labTimers);
+
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+
+  function updateTimerDisplay(labId) {
+    const container = document.querySelector(`.lab-timer-container[data-lab="${labId}"]`);
+    if (!container) return;
+
+    const timer = labTimers[labId];
+    if (!timer) return;
+
+    const timerText = container.querySelector('.timer-text');
+    const timerDisplay = container.querySelector('.timer-display');
+    if (timerText) timerText.textContent = formatTime(timer.remaining);
+
+    if (timerDisplay) {
+      timerDisplay.classList.remove('warning', 'critical');
+      if (timer.remaining <= 120 && timer.remaining > 60) {
+        timerDisplay.classList.add('warning');
+      } else if (timer.remaining <= 60) {
+        timerDisplay.classList.add('critical');
+      }
+    }
+  }
+
+  function startTimer(labId) {
+    // Stop any existing timer
+    if (currentTimerIntervalId) clearInterval(currentTimerIntervalId);
+
+    // Initialize timer if not exists
+    if (!labTimers[labId]) {
+      labTimers[labId] = { active: false, remaining: TIMER_DURATION, started: Date.now() };
+    }
+
+    labTimers[labId].active = true;
+    labTimers[labId].started = Date.now();
+    currentTimer = labId;
+
+    // Update button states for all labs (show global mark-done button)
+    document.querySelectorAll('.lab-start-btn').forEach(btn => {
+      const btnLabId = btn.dataset.lab;
+      const container = btn.closest('.lab-timer-container');
+      const markBtn = document.getElementById('markDoneBtn');
+
+      if (btnLabId === labId) {
+        btn.classList.add('active');
+        btn.textContent = 'Stop Lab';
+        if (markBtn) { markBtn.classList.remove('hidden'); markBtn.dataset.lab = labId; }
+      } else {
+        btn.classList.remove('active');
+        btn.textContent = 'Start Lab';
+      }
+    });
+
+    // Start countdown interval
+    currentTimerIntervalId = setInterval(() => {
+      if (labTimers[labId].remaining > 0) {
+        labTimers[labId].remaining--;
+        updateTimerDisplay(labId);
+        saveLabTimers(labTimers);
+      } else {
+        // Timer reached zero
+        clearInterval(currentTimerIntervalId);
+        labTimers[labId].active = false;
+        saveLabTimers(labTimers);
+        stopTimer(labId);
+        showToast('Lab time expired!');
+      }
+    }, 1000);
+  }
+
+  function stopTimer(labId) {
+    if (currentTimerIntervalId) clearInterval(currentTimerIntervalId);
+    currentTimerIntervalId = null;
+
+    if (labTimers[labId]) {
+      labTimers[labId].active = false;
+      saveLabTimers(labTimers);
+    }
+
+    const container = document.querySelector(`.lab-timer-container[data-lab="${labId}"]`);
+    if (container) {
+      const btn = container.querySelector('.lab-start-btn');
+      if (btn) {
+        btn.classList.remove('active');
+        btn.textContent = 'Start Lab';
+      }
+    }
+
+    const markBtn = document.getElementById('markDoneBtn');
+    if (markBtn) { markBtn.classList.add('hidden'); delete markBtn.dataset.lab; }
+
+    currentTimer = null;
+  }
+
+  function resetTimer(labId) {
+    if (labTimers[labId]) {
+      labTimers[labId].remaining = TIMER_DURATION;
+      labTimers[labId].active = false;
+      saveLabTimers(labTimers);
+      updateTimerDisplay(labId);
+      if (currentTimer === labId) stopTimer(labId);
+    }
+  }
+
+  // Initialize timers for all labs
+  TRACKABLE.forEach(labId => {
+    if (!labTimers[labId]) {
+      labTimers[labId] = { active: false, remaining: TIMER_DURATION, started: 0 };
+    }
+    updateTimerDisplay(labId);
+  });
+
+  // Handle Start Lab / Stop Lab button clicks
+  document.addEventListener('click', (e) => {
+    const startBtn = e.target.closest('.lab-start-btn');
+    if (startBtn) {
+      const labId = startBtn.dataset.lab;
+      if (!labId || !TRACKABLE.has(labId)) return;
+
+      if (labTimers[labId].active) {
+        stopTimer(labId);
+      } else {
+        startTimer(labId);
+      }
+      return;
+    }
+
+
   });
 
 })();
